@@ -1,20 +1,13 @@
 import React, { Component } from "react";
 import { Form, Field } from "react-final-form"; //https://final-form.org/docs/react-final-form/migration/redux-form
+import { connect } from "react-redux";
 
 import { signup } from "../../actions";
 import FormStateToRedux from "../FormStateToRedux";
-import axios from "axios";
-
-async function testAxios(formProps) {
-  const response = await axios.post("http://localhost:3090/signup", formProps);
-  return response;
-}
 
 class Signup extends Component {
-  onSubmit = async (formProps) => {
-    // console.log(formProps);
-    // console.log(testAxios(formProps));
-    console.log(signup(formProps));
+  onSubmit = (formProps) => {
+    this.props.signup(formProps);
   };
 
   render() {
@@ -58,4 +51,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default connect(null, { signup })(Signup);
