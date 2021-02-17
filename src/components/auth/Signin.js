@@ -7,7 +7,8 @@ import FormStateToRedux from "../FormStateToRedux";
 
 class SignIn extends Component {
   onSubmit = (formProps) => {
-    this.props.signin(formProps, () => {
+    //We must return a promise to have the "submitting" as true
+    return this.props.signin(formProps, () => {
       this.props.history.push("/feature");
     });
   };
