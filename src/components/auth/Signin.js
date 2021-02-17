@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Form, Field } from "react-final-form"; //https://final-form.org/docs/react-final-form/migration/redux-form
 import { connect } from "react-redux";
 
-import { signup } from "../../actions";
+import { signin } from "../../actions";
 import FormStateToRedux from "../FormStateToRedux";
 
-class Signup extends Component {
+class SignIn extends Component {
   onSubmit = (formProps) => {
-    this.props.signup(formProps, () => {
+    this.props.signin(formProps, () => {
       this.props.history.push("/feature");
     });
   };
@@ -17,7 +17,7 @@ class Signup extends Component {
       <Form onSubmit={this.onSubmit}>
         {({ handleSubmit, submitting, pristine, form }) => (
           <form onSubmit={handleSubmit}>
-            <FormStateToRedux form="signup" />
+            <FormStateToRedux form="signin" />
             <fieldset>
               <label>Email</label>
               <Field
@@ -38,7 +38,7 @@ class Signup extends Component {
             </fieldset>
             <div>{this.props.errorMessage}</div>
             <button type="submit" disabled={submitting}>
-              Sign Up!
+              Sign In!
             </button>
             <button
               type="button"
@@ -58,4 +58,4 @@ function mapStateToProps(state) {
   return { errorMessage: state.auth.errorMessage };
 }
 
-export default connect(mapStateToProps, { signup })(Signup);
+export default connect(mapStateToProps, { signin })(SignIn);
